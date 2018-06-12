@@ -19,4 +19,4 @@ app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/../build/index.html"))
 })
 
-app.listen(PORT, console.log(`Now turned into ${PORT} FM`))
+app.listen(PORT, console.log(`Now tuned into ${PORT} FM`))
