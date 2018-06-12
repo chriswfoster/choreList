@@ -1,7 +1,9 @@
-const express = require("express")
-const cors = require("cors")
-const { json } = require("body-parser")
 require("dotenv").config()
+const cors = require("cors")
+const express = require("express")
+const massive = require('massive')
+const { json } = require("body-parser")
+const ctrl = require("./controllers/mainController")
 
 const PORT = 3055
 
