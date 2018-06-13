@@ -16,6 +16,18 @@ const massiveConnection = massive(process.env.connectionString)
   .then(db => app.set("db", db))
   .catch(console.log)
 
+
+
+app.get('/api/getChildren', ctrl.getChildren)
+
+
+
+
+
+
+
+
+
 const path = require("path")
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/../build/index.html"))

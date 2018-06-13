@@ -1,0 +1,1 @@
+SELECT * FROM chores_kids

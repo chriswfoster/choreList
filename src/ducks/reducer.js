@@ -1,19 +1,19 @@
 import axios from "axios"
 
 // This is an action constants.
-const NOTHING="NOTHING"
+const GET_KIDS = "GET_KIDS"
 
 // This is my initial state. 
 const initialState = {
- nothing: ""
+ kids: []
 }
 
 // My reducer.
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case NOTHING:
+    case GET_KIDS:
       return Object.assign({}, state, {
-        nothing: action.payload
+        kids: action.payload
       })
 
     default:
@@ -24,9 +24,9 @@ export default function reducer(state = initialState, action) {
 // Action creators.
 
 
-export function sendUpdate(listId, cards, reducerObj) {
+export function updateKids(kidsArr) {
 return{
-    type: NOTHING,
-    payload: "hi"
+    type: GET_KIDS,
+    payload: kidsArr
 }
 }
