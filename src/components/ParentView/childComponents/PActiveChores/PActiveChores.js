@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { updateChores } from "../../../ducks/reducer"
+import { updateChores } from "../../../../ducks/reducer"
 import { connect } from "react-redux"
 import SelectForm from "./SelectForm"
 import axios from "axios"

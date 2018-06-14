@@ -8,26 +8,26 @@ class SelectForm extends Component {
       <div style={{ border: "solid", width: "80%" }}>
         <p>Add Chore:</p>
         <form>
-          <Select defaultValue={"Click to Select"}>
-            <Option value="Dishes"> Dishes </Option>
-            <Option value="Laundry"> Laundry </Option>
-            <Option value="Bathroom Floors and Counter">
-              Bathroom Floors and Counter
-            </Option>
-            <Option value="Scrub Toilet"> Scrub Toilet </Option>
-            <Option value="Clean Bedroom"> Clean Bedroom </Option>
-            <Option value="Clothes in Drawers 'STAY' Folded">
-              Clothes in Drawers 'STAY' Folded
-            </Option>
-            <Option value="Pick Up Livingroom"> Pick Up Livingroom </Option>
-            <Option value="Sweep Entire House"> Sweep Entire House </Option>
-            <Option value="Mop Entire House"> Mop Entire House </Option>
-            <Option value="Table 'STAYS' Clean"> Table 'STAYS' Clean </Option>
-            <Option value="Vacuum Rugs"> Vacuum Rugs </Option>
-            <Option value="Clean Atlas Room"> Clean Atlas Room </Option>
-            <Option value="Marley Food/Water"> Marley Food/Water </Option>
-            <Option value="Change Bed Sheets"> Change Bed Sheets </Option>
-            <Option value="Trash"> Trash </Option>
+          <Select
+            labelInValue
+            defaultValue="Click to Select"
+            onChange={e => console.log(e)}
+          >
+            <Option value="40"> Dishes (40)</Option>
+            <Option value="30"> Mop Entire House (30)</Option>
+            <Option value="30"> Laundry (30)</Option>
+            <Option value="20">Bathroom Floors and Counter (20)</Option>
+            <Option value="20"> Pick Up Livingroom (20)</Option>
+            <Option value="20"> Clean Bedroom (20)</Option>
+            <Option value="10">Clothes in Drawers 'STAY' Folded (10)</Option>
+            <Option value="10"> Sweep Entire House (10)</Option>
+            <Option value="10">Table 'STAYS' Clean (10)</Option>
+            <Option value="10"> Marley Food/Water (10)</Option>
+            <Option value="10"> Change Bed Sheets (10)</Option>
+            <Option value="10"> Clean Atlas Room (10)</Option>
+            <Option value="10"> Scrub Toilet (10)</Option>
+            <Option value="10"> Vacuum Rugs (10)</Option>
+            <Option value="10"> Trash (10)</Option>
           </Select>
           <Input
             onChange={e => this.setState({ inputText: e.target.value })}
