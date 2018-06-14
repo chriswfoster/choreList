@@ -10,10 +10,10 @@ class ChildColumns extends Component {
   }
 
   render() {
-      console.log(this.props)
+      const children = this.props.kids.map((kid, i) => <Child kid={kid} key={i}/>)
     return (
       <div>
-        <Child />
+        {children}
       </div>
     )
   }
