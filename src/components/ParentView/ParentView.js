@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
+import PActiveChores from './childComponents/PActiveChores';
+import PChildColumns from './childComponents/PChildColumns';
 
 class ParentView extends Component{
 
 render(){
 return(
-<div>
-
+<div className="rowFlexUncentered">
+    <PActiveChores />
+    <PChildColumns />
 </div>
 )
 }

@@ -1,5 +1,3 @@
-import axios from "axios"
-
 // This is an action constants.
 const GET_KIDS = "GET_KIDS"
 const GET_CHORES = "GET_CHORES"

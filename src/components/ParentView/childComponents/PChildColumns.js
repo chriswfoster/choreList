@@ -1,13 +1,21 @@
-import React, {Component} from 'react'
+import React, { Component } from "react"
+import axios from "axios"
 
-class PChildColumns extends Component{
+import {updateKids} from '../../../ducks/reducer'
+import { connect } from "react-redux"
 
-render(){
-return(
-<div>
-
-</div>
-)
+class PChildColumns extends Component {
+  componentDidMount() {
+    axios
+      .get("/api/getChildren")
+      .then(response => this.props.updateKids(response.data))
+  }
+  render() {
+    return <div />
+  }
 }
-}
-export default PChildColumns
+const mapStateToProps = state => state
+export default connect(
+  mapStateToProps,
+  { updateKids }
+)(PChildColumns)

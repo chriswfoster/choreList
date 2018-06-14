@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 class Child extends Component {
   render() {
-    console.log(this.props)
+
     const { name, id } = this.props.kid
     const chorelist = this.props.chores
       .filter(chore => chore.chore_holder === id)
