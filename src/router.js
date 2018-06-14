@@ -10,7 +10,7 @@ import store from "./store"
 export default (
   <Provider store={store}>
     <Switch>
-      <Route exact path="/" component={GuestView} />
+      <Route exact path="/" component={ParentView} />
     </Switch>
   </Provider>
 )
