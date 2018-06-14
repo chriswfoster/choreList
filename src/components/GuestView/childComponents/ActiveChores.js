@@ -1,27 +1,29 @@
-import React, {Component} from 'react'
+import React, { Component } from "react"
 import { connect } from "react-redux"
-import {updateChores} from '../../../ducks/reducer'
-import axios from 'axios'
+import { updateChores } from "../../../ducks/reducer"
+import axios from "axios"
 
-class ActiveChores extends Component{
+class ActiveChores extends Component {
+  componentDidMount() {
+    axios
+      .get("/api/getChores")
+      .then(response => this.props.updateChores(response.data))
+  }
 
-    componentDidMount(){
-        axios.get('/api/getChores')
-        .then(response => this.props.updateChores(response.data))
-      }
-
-
-    
-render(){
-return(
-<div>
-Active Chores:
-</div>
-)
-}
+  render() {
+    const choreList = this.props.chores
+      .filter(chore => chore.chore_holder === null)
+      .map((chore, i) => <p>{chore.chore_name}</p>)
+    return (
+      <div className="activeChoresPrimary">
+        <p>Active Chores:</p>
+        <div className="columnFlex">{choreList}</div>
+      </div>
+    )
+  }
 }
 const mapStateToProps = state => state
 export default connect(
   mapStateToProps,
-  {updateChores}
+  { updateChores }
 )(ActiveChores)

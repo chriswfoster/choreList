@@ -1,15 +1,16 @@
 import React, { Component } from "react"
 import ActiveChores from "./childComponents/ActiveChores"
-import ChildColumns from './childComponents/ChildColumns'
+import ChildColumns from "./childComponents/ChildColumns"
+
+import "./guestview.css"
 
 class GuestView extends Component {
   render() {
     return (
-      <div>
+      <div className="rowFlexUncentered">
         <ActiveChores />
-        <div>
-            <ChildColumns />
-            </div>
+
+        <ChildColumns />
       </div>
     )
   }
