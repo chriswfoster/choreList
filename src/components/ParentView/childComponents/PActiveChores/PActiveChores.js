@@ -1,9 +1,16 @@
 import React, { Component } from "react"
 import { updateChores } from "../../../ducks/reducer"
 import { connect } from "react-redux"
+import SelectForm from "./SelectForm"
 import axios from "axios"
 
 class PActiveChores extends Component {
+  constructor() {
+    super()
+    this.state = {
+      inputText: ""
+    }
+  }
   componentDidMount() {
     axios
       .get("/api/getChores")
@@ -18,7 +25,7 @@ class PActiveChores extends Component {
       <div className="activeChoresPrimary">
         <p className="titleFont">Active Chores:</p>
         <div className="columnFlex">{choreList}</div>
-        
+        <SelectForm />
       </div>
     )
   }
