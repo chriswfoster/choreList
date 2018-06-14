@@ -8,8 +8,10 @@
 }
 
 .activeChoresPrimary{
-    height: 100vw;
-    width: 30vw;
+    height: 100vh;
+    width: 25vw;
+    border-right: solid;
+
 }
 
 .rowFlexUncentered{
@@ -21,3 +23,17 @@
 	align-content: stretch;
 }
 
+.titleFont{
+    font-size: 2rem;
+    border-bottom: solid;
+    font-weight: solid;
+}
+.itemFont {
+    font-size: 1.5rem;
+    color: red;
+    font-weight: bold;
+}
+.childPrimary {
+    width: 37.25vw;
+    border-right: solid
+}

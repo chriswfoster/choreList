@@ -13,10 +13,10 @@ class ActiveChores extends Component {
   render() {
     const choreList = this.props.chores
       .filter(chore => chore.chore_holder === null)
-      .map((chore, i) => <p>{chore.chore_name}</p>)
+      .map((chore, i) => <p className="itemFont">{chore.chore_name}</p>)
     return (
       <div className="activeChoresPrimary">
-        <p>Active Chores:</p>
+        <p className="titleFont">Active Chores:</p>
         <div className="columnFlex">{choreList}</div>
       </div>
     )
