@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import axios from "axios"
 
-import {updateKids} from '../../../../ducks/reducer'
+import PChild from './PChild'
+import { updateKids } from "../../../../ducks/reducer"
 import { connect } from "react-redux"
 
 class PChildColumns extends Component {
@@ -10,8 +11,12 @@ class PChildColumns extends Component {
       .get("/api/getChildren")
       .then(response => this.props.updateKids(response.data))
   }
+
   render() {
-    return <div />
+    const children = this.props.kids.map((kid, i) => (
+      <PChild kid={kid} key={i} />
+    ))
+    return <div className="rowFlexUncentered">{children}</div>
   }
 }
 const mapStateToProps = state => state
