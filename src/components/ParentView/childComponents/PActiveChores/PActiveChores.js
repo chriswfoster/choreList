@@ -19,7 +19,8 @@ class PActiveChores extends Component {
       .then(response => this.props.updateChores(response.data))
   }
 
-  handleDrop = src => {
+  handleDrop = (src, other) => {
+    console.log(src, other)
     let placeholder = this.state.box
     placeholder.push(src)
     this.setState({ box: placeholder })
@@ -29,7 +30,13 @@ class PActiveChores extends Component {
     console.log(this.state)
     const choreList = this.props.chores
       .filter(chore => chore.chore_holder === null)
-      .map((chore, i) => <Chore src={chore.chore_name} key={i} />)
+      .map((chore, i) => (
+        <Chore
+          src={chore.chore_name}
+          handleDrop={src => this.handleDrop(src)}
+          key={i}
+        />
+      ))
     return (
       <div className="activeChoresPrimary">
         <p className="titleFont">Active Chores:</p>

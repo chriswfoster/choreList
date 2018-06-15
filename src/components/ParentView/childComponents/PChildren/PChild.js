@@ -22,6 +22,7 @@ class PChild extends Component {
         </div>
       ))
     const { connectDropTarget } = this.props
+
     return connectDropTarget(
       <div className="childPrimary">
         <p className="titleFont">{name}</p>
@@ -30,8 +31,40 @@ class PChild extends Component {
     )
   }
 }
+
+
+const cardTarget = {
+    drop(props, monitor, component) {
+      const { id } = props
+      console.log(id)
+      const sourceObj = monitor.getItem()
+      if (id !== sourceObj.listId) component.pushCard(sourceObj.card)
+      return {
+        listId: props.listId,
+        addType: "grantors",
+        spouse: "spouse_name",
+        partyId: props.ind
+      }
+    }
+  }
+  
+  const cardSource = {
+    beginDrag(props) {
+      return {
+        index: props.index,
+        listId: props.listId,
+        card: props.card
+      }
+    }
+  }
+
+
+
 const mapStateToProps = state => state
 export default connect(
   mapStateToProps,
   {}
-)(DropTarget(Types.ITEM, {}, collect)(PChild))
+)(DropTarget(Types.ITEM, cardTarget, connect  => ({
+    connectDropTarget: connect.dropTarget(),
+    test: "hi"
+  }))(PChild))
