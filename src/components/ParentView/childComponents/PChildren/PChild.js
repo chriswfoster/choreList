@@ -1,5 +1,15 @@
 import React, {Component} from 'react'
+import { DropTarget } from "react-dnd"
 import { connect } from "react-redux"
+
+const Types = {
+    ITEM: "chore"
+  }
+  function collect(connect, monitor) {
+    return {
+      connectDropTarget: connect.dropTarget()
+    }
+  }
 
 class PChild extends Component{
 
@@ -25,5 +35,5 @@ class PChild extends Component{
     export default connect(
       mapStateToProps,
       {}
-    )(PChild)
+    )(DropTarget(Types.ITEM, {}, collect)(PChild))
     
