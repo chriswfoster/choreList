@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { updateChores } from "../../../../ducks/reducer"
+import Chore from "./Chore"
 import { connect } from "react-redux"
 import SelectForm from "./SelectForm"
 import axios from "axios"
@@ -8,7 +9,8 @@ class PActiveChores extends Component {
   constructor() {
     super()
     this.state = {
-      inputText: ""
+      inputText: "",
+      box: []
     }
   }
   componentDidMount() {
@@ -17,14 +19,17 @@ class PActiveChores extends Component {
       .then(response => this.props.updateChores(response.data))
   }
 
+  handleDrop = src => {
+    let placeholder = this.state.box
+    placeholder.push(src)
+    this.setState({ box: placeholder })
+  }
+
   render() {
+    console.log(this.state)
     const choreList = this.props.chores
       .filter(chore => chore.chore_holder === null)
-      .map((chore, i) => (
-        <p className="itemFont" key={i}>
-          {chore.chore_name}
-        </p>
-      ))
+      .map((chore, i) => <Chore src={chore.chore_name} key={i} />)
     return (
       <div className="activeChoresPrimary">
         <p className="titleFont">Active Chores:</p>

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PActiveChores from "./childComponents/PActiveChores/PActiveChores"
-import PChildColumns from "./childComponents/PChildColumns"
+import PChildColumns from "./childComponents/PChildren/PChildColumns"
 
 import "./parentview.css"
 
