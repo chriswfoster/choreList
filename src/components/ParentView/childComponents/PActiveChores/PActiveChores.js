@@ -20,12 +20,18 @@ class PActiveChores extends Component {
   render() {
     const choreList = this.props.chores
       .filter(chore => chore.chore_holder === null)
-      .map((chore, i) => <p className="itemFont" key={i}>{chore.chore_name}</p>)
+      .map((chore, i) => (
+        <p className="itemFont" key={i}>
+          {chore.chore_name}
+        </p>
+      ))
     return (
       <div className="activeChoresPrimary">
         <p className="titleFont">Active Chores:</p>
-        <div className="columnFlex">{choreList}</div>
-        <SelectForm />
+        <div className="columnFlex">
+          {choreList}
+          <SelectForm />
+        </div>
       </div>
     )
   }

@@ -20,6 +20,7 @@ const massiveConnection = massive(process.env.connectionString)
 
 app.get('/api/getChildren', ctrl.getChildren)
 app.get('/api/getChores', ctrl.getChores)
+app.post('/api/addChore', ctrl.addChore)
 
 
 
