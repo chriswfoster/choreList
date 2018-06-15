@@ -32,9 +32,10 @@ class PActiveChores extends Component {
       .filter(chore => chore.chore_holder === null)
       .map((chore, i) => (
         <Chore
+        id={chore.id}
           src={chore.chore_name}
           handleDrop={src => this.handleDrop(src)}
-          key={i}
+          key={chore.id}
         />
       ))
     return (

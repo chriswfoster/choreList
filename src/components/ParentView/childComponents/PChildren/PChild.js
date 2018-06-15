@@ -32,18 +32,17 @@ class PChild extends Component {
   }
 }
 
-
+/// need to see if this guy-below activates ever
 const cardTarget = {
     drop(props, monitor, component) {
-      const { id } = props
+      const { id } = props.kid
       console.log(id)
       const sourceObj = monitor.getItem()
-      if (id !== sourceObj.listId) component.pushCard(sourceObj.card)
+      console.log(sourceObj)
+    //   if (id !== sourceObj.kidId) component.pushCard(sourceObj.card)
       return {
-        listId: props.listId,
-        addType: "grantors",
-        spouse: "spouse_name",
-        partyId: props.ind
+        kidId: props.kid.id,
+        
       }
     }
   }

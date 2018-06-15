@@ -11,9 +11,10 @@ const itemSource = {
       const item = { src: props.src, id: props.id }
       return item
     },
-    endDrag(props) {
-        console.log(props)
-        
+    endDrag(props, monitor) {
+        console.log(monitor)
+        let item = monitor.getDropResult()
+        console.log(item)
         return props.handleDrop(props.src)
       }
     }
