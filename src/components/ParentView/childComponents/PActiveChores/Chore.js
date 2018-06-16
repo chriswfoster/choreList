@@ -11,10 +11,10 @@ const itemSource = {
       const item = { src: props.src, id: props.id }
       return item
     },
+    // below here I have the chore id in props, and the kid's ID to put it in, in item.kidId
     endDrag(props, monitor) {
-        console.log(monitor)
         let item = monitor.getDropResult()
-        console.log(item)
+        console.log(props.id, item.kidId)
         return props.handleDrop(props.src)
       }
     }
