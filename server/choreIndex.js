@@ -9,7 +9,6 @@ const ctrl = require("./controllers/mainController")
 
 const PORT = 3055
 
-
 const app = express()
 app.use(express.static(`${__dirname}/../build`))
 app.use(cors())
@@ -21,6 +20,26 @@ const io = socketIo(server)
 const massiveConnection = massive(process.env.connectionString)
   .then(db => app.set("db", db))
   .catch(console.log)
+
+io.on("connection", socket => {
+  console.log("A user has connected to the system.")
+  initialEmit(socket)
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected")
+  })
+})
+
+const initialEmit = async socket => {
+  try {
+    app
+      .get("db")
+      .getChores()
+      .then(response => io.sockets.emit("getChores", response))
+  } catch (error) {
+    console.error(`Error: ${error.code}`)
+  }
+}
 
 app.get("/api/getChildren", ctrl.getChildren)
 app.get("/api/getChores", ctrl.getChores)

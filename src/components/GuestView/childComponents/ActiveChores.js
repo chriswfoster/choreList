@@ -1,14 +1,25 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { updateChores } from "../../../ducks/reducer"
-import axios from "axios"
+
+import socketIOClient from "socket.io-client"
+
 
 class ActiveChores extends Component {
-  componentDidMount() {
-    axios
-      .get("/api/getChores")
-      .then(response => this.props.updateChores(response.data))
+constructor(){
+  super()
+  this.state = {
+    endpoint: "/"
   }
+  this.socket = socketIOClient("/")
+}
+
+    componentDidMount() {
+      this.socket.on("getChores", data => {
+         this.props.updateChores(data)
+      })
+    }
+  
 
   render() {
     const choreList = this.props.chores

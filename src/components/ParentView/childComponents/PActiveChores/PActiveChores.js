@@ -1,8 +1,11 @@
 import React, { Component } from "react"
-import { updateChores } from "../../../../ducks/reducer"
 import Chore from "./Chore"
-import { connect } from "react-redux"
 import SelectForm from "./SelectForm"
+
+import { connect } from "react-redux"
+import { updateChores } from "../../../../ducks/reducer"
+
+import socketIOClient from "socket.io-client"
 import axios from "axios"
 
 class PActiveChores extends Component {
@@ -10,13 +13,16 @@ class PActiveChores extends Component {
     super()
     this.state = {
       inputText: "",
-      box: []
+      box: [],
+      endpoint: "/"
     }
+    this.socket = socketIOClient("/")
   }
+
   componentDidMount() {
-    axios
-      .get("/api/getChores")
-      .then(response => this.props.updateChores(response.data))
+    this.socket.on("getChores", data => {
+       this.props.updateChores(data)
+    })
   }
 
   handleDrop = (src, other) => {
@@ -32,7 +38,7 @@ class PActiveChores extends Component {
       .filter(chore => chore.chore_holder === null)
       .map((chore, i) => (
         <Chore
-        id={chore.id}
+          id={chore.id}
           src={chore.chore_name}
           handleDrop={src => this.handleDrop(src)}
           key={chore.id}
