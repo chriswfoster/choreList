@@ -21,11 +21,18 @@ const massiveConnection = massive(process.env.connectionString)
   .then(db => app.set("db", db))
   .catch(console.log)
 
-  app.set('io', io)
+app.set("io", io)
 
 io.on("connection", socket => {
   console.log("A user has connected to the system.")
   initialEmit(socket)
+
+  socket.on("updateKid", obj => {
+    app
+      .get("db")
+      .updateKid(obj.chore, obj.kid)
+      .then(response => io.sockets.emit("getChores", response))
+  })
 
   socket.on("disconnect", () => {
     console.log("User disconnected")
@@ -46,7 +53,7 @@ const initialEmit = async socket => {
 app.get("/api/getChildren", ctrl.getChildren)
 app.get("/api/getChores", ctrl.getChores)
 app.post("/api/addChore", ctrl.addChore)
-app.put("/api/updateKid", ctrl.updateKid)
+// app.put("/api/updateKid", ctrl.updateKid)
 
 const path = require("path")
 app.get("*", (req, res, next) => {

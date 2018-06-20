@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { DragSource } from "react-dnd"
 
-import axios from "axios"
+// import axios from "axios"
+import socketIOClient from "socket.io-client"
+const socket = socketIOClient("/")
 
 const Types = {
   ITEM: "chore"
@@ -19,7 +21,11 @@ const itemSource = {
     let item = monitor.getDropResult()
     console.log(props.id, item.kidId)
     // return props.handleDrop(props.id, item)
-    axios.put("/api/updateKid", {
+    // axios.put("/api/updateKid", {
+    //   chore: props.id,
+    //   kid: item.kidId
+    // }).then(response => console.log(response))
+    socket.emit("updateKid", {
       chore: props.id,
       kid: item.kidId
     })
