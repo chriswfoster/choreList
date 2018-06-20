@@ -34,6 +34,20 @@ io.on("connection", socket => {
       .then(response => io.sockets.emit("getChores", response))
   })
 
+  socket.on("addChore", obj => {
+    app
+      .get("db")
+      .addChore(obj.name, obj.points)
+      .then((response) =>io.sockets.emit("getChores", response))
+  })
+
+  socket.on("unassignChore", id => {
+    app
+      .get("db")
+      .unassignChore(id)
+      .then(response => io.sockets.emit("getChores", response))
+  })
+
   socket.on("disconnect", () => {
     console.log("User disconnected")
   })
@@ -52,7 +66,7 @@ const initialEmit = async socket => {
 
 app.get("/api/getChildren", ctrl.getChildren)
 app.get("/api/getChores", ctrl.getChores)
-app.post("/api/addChore", ctrl.addChore)
+// app.post("/api/addChore", ctrl.addChore)
 // app.put("/api/updateKid", ctrl.updateKid)
 
 const path = require("path")

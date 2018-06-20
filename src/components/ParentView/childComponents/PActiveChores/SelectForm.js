@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-
-import axios from "axios"
+import socketIOClient from "socket.io-client"
 import { connect } from "react-redux"
 import { updateChores } from "../../../../ducks/reducer"
 import { Button, Select, Input, Form } from "antd"
@@ -15,6 +14,7 @@ class SelectForm extends Component {
       selectValue: 0,
       selectLabel: ""
     }
+    this.socket = socketIOClient("/")
   }
 
   submitHandler = e => {
@@ -22,12 +22,12 @@ class SelectForm extends Component {
     this.props.form.resetFields()
 
     const { selectLabel, selectValue } = this.state
-    axios
-      .post("/api/addChore", {
-        name: selectLabel,
-        points: selectValue
-      })
-      .then(response => this.props.updateChores(response.data))
+
+    this.socket.emit("addChore", {
+      name: selectLabel,
+      points: selectValue
+    })
+    
     this.setState({ selectLabel: "", selectValue: 0, custom: false })
   }
 

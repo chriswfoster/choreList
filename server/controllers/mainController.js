@@ -11,18 +11,12 @@ const getChores = app => {
     .then(response => io.sockets.emit("getChores", response))
 }
 
-const addChore = (req, res) => {
-  const dbInstance = req.app.get("db")
-  const io = req.app.get("io")
-  const { name, points } = req.body
-  dbInstance
-    .addChore(name, points)
-    .then(() =>
-      dbInstance
-        .getChores()
-        .then(response => io.sockets.emit("getChores", response))
-    )
-}
+// const addChore = (req, res) => {
+//   const dbInstance = req.app.get("db")
+//   const io = req.app.get("io")
+//   const { name, points } = req.body
+
+// }
 
 // const updateKid = (req, res) => {
 //   const dbInstance = req.app.get("db")
@@ -39,6 +33,6 @@ const addChore = (req, res) => {
 module.exports = {
   getChildren,
   getChores,
-  addChore,
+  // addChore,
   // updateKid
 }

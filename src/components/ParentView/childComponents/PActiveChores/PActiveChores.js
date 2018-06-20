@@ -26,18 +26,7 @@ class PActiveChores extends Component {
   }
 
   handleDrop = (chore, kid) => {
-    console.log(chore, kid)
-   
-    // axios.put("/api/updateKid", {
-    //   chore,
-    //   kid
-    // })
-    // .then(response => response)
-    console.log(chore, kid)
-    // console.log(src, other)
-    // let placeholder = this.state.box
-    // placeholder.push(src)
-    // this.setState({ box: placeholder })
+    console.log("NOT BEING USED")
   }
 
   render() {
