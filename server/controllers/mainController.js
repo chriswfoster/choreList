@@ -12,13 +12,30 @@ console.log(app)
 
 const addChore = (req, res) => {
   const dbInstance = req.app.get('db')
+  const io = req.app.get('io')
 const {name, points} = req.body
   dbInstance.addChore(name, points)
   .then(() => dbInstance.getChores().then(response => io.sockets.emit("getChores", response)))
 }
 
+const updateKid = (req, res) => {
+  const dbInstance = req.app.get('db')
+  const io = req.app.get('io')
+  const {chore, kid} = req.body
+  
+  dbInstance.updateKid(chore, kid)
+  .then(response => res.status(200) && io.sockets.emit("getChores", response))
+  // .then((response) => res.status(200))
+  // .then(() => dbInstance.getChores().then(response => io.sockets.emit("getChores", response)))
+  .then(() => console.log("done", chore, kid))
+}
+
+
+
 module.exports = {
   getChildren,
   getChores,
-  addChore
+  addChore,
+  updateKid
+  
 }

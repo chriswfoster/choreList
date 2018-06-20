@@ -21,15 +21,21 @@ class PActiveChores extends Component {
 
   componentDidMount() {
     this.socket.on("getChores", data => {
-       this.props.updateChores(data)
+      this.props.updateChores(data)
     })
   }
 
-  handleDrop = (src, other) => {
-    console.log(src, other)
-    let placeholder = this.state.box
-    placeholder.push(src)
-    this.setState({ box: placeholder })
+  handleDrop = (chore, kid) => {
+    console.log(chore, kid)
+    axios.put("/api/updateKid", {
+      chore,
+      kid
+    })
+    console.log(chore, kid)
+    // console.log(src, other)
+    // let placeholder = this.state.box
+    // placeholder.push(src)
+    // this.setState({ box: placeholder })
   }
 
   render() {

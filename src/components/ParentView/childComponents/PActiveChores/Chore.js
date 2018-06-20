@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { DragSource } from "react-dnd"
 
+import axios from "axios"
+
 const Types = {
   ITEM: "chore"
 }
@@ -16,7 +18,11 @@ const itemSource = {
   endDrag(props, monitor) {
     let item = monitor.getDropResult()
     console.log(props.id, item.kidId)
-    return props.handleDrop(props.src)
+    // return props.handleDrop(props.id, item)
+    axios.put("/api/updateKid", {
+      chore: props.id,
+      kid: item.kidId
+    })
   }
 }
 
