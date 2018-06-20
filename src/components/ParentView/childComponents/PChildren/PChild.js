@@ -30,6 +30,7 @@ class PChild extends Component {
       .map((chore, i) => (
         <div key={i} className="choreBoxes">
           <p className="itemFont">{chore.chore_name}</p>
+          <p>Actual Point Value: {chore.point_value}</p>
           <Button onClick={() => this.unassignChore(chore.id)}>
             Unassign Chore
           </Button>
